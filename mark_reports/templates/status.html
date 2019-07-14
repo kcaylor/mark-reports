@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{name}} Status Report for {{ date | format_time }}{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #3356699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <h3> {{ name }} Status </h3>
+    <div class="content" id="device-status">
+        Device {{ name }}'s state is {{ state|lower }} and its signal strength is {{ strength | lower}}.
+        Device {{ name }}'s battery is at {{pct|int}}% of capacity, with a voltage of {{ "%.2f"|format(voltage/1000) }}. 
+        <br>
+        {{ name }} last reported {{ updated|elapsed_time }} ago.
+    </div>
+{% endblock %}
